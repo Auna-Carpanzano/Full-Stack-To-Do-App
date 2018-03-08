@@ -10,6 +10,10 @@ class TodoList extends Component {
   }
 
   componentWillMount() {
+    this.loadTodos();
+  }
+
+  loadTodos() {
     fetch(APIURL)
     .then(data => data.json())
     .then(todos => this.setState({todos}));
