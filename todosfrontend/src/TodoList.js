@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import TodoItem from "./TodoItem";
 import TodoForm from "./TodoForm";
-const APIURL = "/api/todos";
+const APIURL = "/api/todos/";
 
 class TodoList extends Component {
   constructor(props) {
@@ -61,6 +61,32 @@ class TodoList extends Component {
       this.setState({todos: [...this.state.todos, newTodo]})
     })
   }
+
+  deleteTodo(id) {
+    const deleteURL = APIURL + id;
+    fetch(deleteURL, {
+      method: "delete"
+    })
+    .then(resp => {
+      if(!resp.ok) {
+        if(resp.status >=400 && resp.status < 500) {
+          return resp.json().then(data => {
+            let err = {errorMessage: data.message};
+            throw err;
+          })
+        } else {
+          let err = {errorMessage: "Please try again later, server is not responding."};
+          throw err;
+        }
+      }
+      return resp.json();
+    })
+    .then(() => {
+      const todos = this.state.todos.filter(todo => todo._id !== id)
+      this.setState({todos: todos});
+    })
+  }
+
   render() {
     const todos = this.state.todos.map((t) => (
       <TodoItem
