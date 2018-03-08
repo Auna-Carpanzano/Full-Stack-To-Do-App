@@ -92,6 +92,7 @@ class TodoList extends Component {
       <TodoItem
         key={t._id}
         {...t}
+        onDelete={this.deleteTodo.bind(this,t._id)}
       />
     ));
     return (
