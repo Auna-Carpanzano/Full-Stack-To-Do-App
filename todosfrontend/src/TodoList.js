@@ -93,6 +93,7 @@ class TodoList extends Component {
         key={t._id}
         {...t}
         onDelete={this.deleteTodo.bind(this,t._id)}
+        onToggle={this.toggleTodo.bind(this, t)}
       />
     ));
     return (
