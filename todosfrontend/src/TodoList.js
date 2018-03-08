@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+const APIURL = "/api/todos";
 
 class TodoList extends Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class TodoList extends Component {
   }
 
   componentWillMount() {
-    fetch("/api/todos")
+    fetch(APIURL)
     .then(data => data.json())
     .then(todos => this.setState({todos}));
   }
