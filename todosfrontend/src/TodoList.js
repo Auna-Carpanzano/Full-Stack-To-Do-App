@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import TodoItem from "./TodoItem";
 import TodoForm from "./TodoForm";
 import * as apiCalls from "./api";
-const APIURL = "/api/todos/";
 
 class TodoList extends Component {
   constructor(props) {
