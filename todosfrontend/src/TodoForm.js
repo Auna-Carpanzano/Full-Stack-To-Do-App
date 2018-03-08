@@ -13,7 +13,7 @@ class TodoForm extends Component {
     });
   }
   handleSubmit() {
-    console.log(this.state.inputValue)
+    this.props.addTodo(this.state.inputValue);
   }
   render() {
     return (
