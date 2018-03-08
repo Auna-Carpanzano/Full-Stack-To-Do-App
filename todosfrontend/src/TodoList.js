@@ -7,6 +7,13 @@ class TodoList extends Component {
       todos: []
     }
   }
+
+  componentWillMount() {
+    fetch("/api/todos")
+    .then(data => data.json())
+    .then(todos => this.setState({todos}));
+  }
+
   render() {
     return (
      <h1>Todo List</h1>
